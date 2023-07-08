@@ -1,0 +1,30 @@
+ bool findTriplets(int arr[], int n)
+    { 
+        //Your code here
+        sort(arr,arr+n);
+        for(int i=0;i<n;i++){
+            
+            int j=i+1;
+            int z=n-1;
+            
+            while(j<z){
+             int sum=arr[i]+arr[j]+arr[z];
+            
+             
+             if(sum==0){
+                 return true;
+             }
+             
+             else if(sum<0){
+                 j++;
+             }
+             else{
+                 z--;
+             }
+             
+            }
+            
+        }
+        
+        return false;
+    }
