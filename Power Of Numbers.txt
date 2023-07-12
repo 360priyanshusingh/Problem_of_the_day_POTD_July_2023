@@ -1,0 +1,17 @@
+ long long power(int N,int R)
+    {
+       //Your code here
+         if(R==0) return 1;
+         if(R==1) return N;
+        // long long mod =1000000007;
+        
+         if(R%2==0){
+           long long s=power(N,R/2);
+             
+             return ((long long )((s%mod)*(s%mod))) % mod;
+         }
+         else{
+             long long s=power(N,R-1);
+             return ((long long )(s*N)) % mod;
+         }
+    }
