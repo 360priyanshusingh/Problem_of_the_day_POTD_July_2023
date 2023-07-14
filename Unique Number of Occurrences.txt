@@ -1,0 +1,19 @@
+public:
+    bool isFrequencyUnique(int n, int arr[])
+    {
+        unordered_map<int,int> mp;
+        unordered_map<int,int> mp2;
+        
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        for(auto &b:mp){
+            mp2[b.second]++;
+        }
+        
+        for(auto &a:mp2){
+            if(a.second>=2) return false;
+        }
+        
+        return true;
+    }
