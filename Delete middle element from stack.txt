@@ -1,0 +1,17 @@
+void deleteMid(stack<int>&s, int sizeOfStack)
+    {
+        // code here.. 
+        stack<int> s2;
+        int n=sizeOfStack/2 + 1;
+        while(n--){
+            s2.push(s.top());
+            s.pop();
+        }
+          s2.pop();
+        
+        while(!s2.empty())  {
+            s.push(s2.top());
+            s2.pop();
+        }
+        
+    }
