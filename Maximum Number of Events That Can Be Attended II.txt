@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int helper(vector<vector<int>>& events,int index,int k,vector<vector<int>> &dp){
+        int n=events.size();
+        if(index>=n || k==0){
+           return 0;
+        }
+
+        if(dp[index][k]!=-1) return dp[index][k];
+
+       
+       
+
+        vector<int> tem={events[index][1] ,INT_MAX,INT_MAX};
+        int i=upper_bound(events.begin(),events.end(),tem)-events.begin();
+
+        return dp[index][k]= max(helper(events,index+1,k,dp),events[index][2]+helper(events,i,k-1,dp));
+
+    }
+
+    int maxValue(vector<vector<int>>& events, int k) {
+         int n=events.size();
+        sort(events.begin(),events.end());
+        vector<vector<int>> dp(n+1,vector<int> (k+1,-1));
+        return helper(events,0,k,dp);
+    }
+};
