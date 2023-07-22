@@ -1,0 +1,28 @@
+class Solution {
+public:
+    double dfs(int n,int i,int j,int k,vector<vector<vector<double>>> &dp){
+         if(i<0 || i>=n || j<0 || j>=n ) return 0;
+
+         if(k<=0) return 1;
+
+         if(dp[i][j][k]!=0) return dp[i][j][k];
+
+         double ans=0;
+         ans+=dfs(n,i+1,j+2,k-1,dp);
+         ans+=dfs(n,i+2,j+1,k-1,dp);
+         ans+=dfs(n,i+2,j-1,k-1,dp);
+         ans+=dfs(n,i+1,j-2,k-1,dp);
+         ans+=dfs(n,i-1,j+2,k-1,dp);
+         ans+=dfs(n,i-2,j+1,k-1,dp);
+         ans+=dfs(n,i-2,j-1,k-1,dp);
+         ans+=dfs(n,i-1,j-2,k-1,dp);
+        return  dp[i][j][k]=ans/8.0;
+    }
+
+    double knightProbability(int n, int k, int row, int column) {
+        
+        vector<vector<vector<double>> > dp(n, vector<vector<double> >(n, vector<double>(k+1, 0)));
+        return dfs(n,row,column,k,dp);
+        
+    }
+};
