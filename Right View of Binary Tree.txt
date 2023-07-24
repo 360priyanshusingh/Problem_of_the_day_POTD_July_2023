@@ -1,0 +1,42 @@
+ vector<int> rightView(Node *root)
+    {
+       // Your Code here
+       queue<Node*> q;
+       q.push(root);
+       vector<int> ans;
+       
+       while(!q.empty()){
+           int size=q.size();
+           size--;
+           int i=0;
+           
+           while(i<size){
+               Node *tem=q.front();
+               q.pop();
+               
+               if(tem->left){
+                   q.push(tem->left);
+               }
+               if(tem->right){
+                    q.push(tem->right);
+               }
+               i++;
+               
+           }
+           
+           if(!q.empty()){
+               Node *tem=q.front();
+               q.pop();
+               ans.push_back(tem->data);
+               if(tem->left){
+                   q.push(tem->left);
+               }
+               if(tem->right){
+                    q.push(tem->right);
+               }
+           }
+           
+       }
+       
+       return ans;
+    }
