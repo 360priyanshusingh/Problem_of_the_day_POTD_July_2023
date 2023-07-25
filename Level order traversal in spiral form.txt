@@ -1,0 +1,51 @@
+vector<int> findSpiral(Node *root)
+{
+    //Your code here
+    stack<Node *> st;
+    stack<Node *> st1;
+    st.push(root);
+    vector<int> ans;
+
+    while(!st.empty() ){
+        
+        int s=st.size();
+        
+        while(s--){
+            Node * tem=st.top();
+            st.pop();
+                ans.push_back(tem->data);
+             if(tem->right!=NULL){
+                st1.push(tem->right);
+            }
+            if(tem->left!=NULL){
+                st1.push(tem->left);
+            }
+            
+           
+            
+        }
+        
+        // if(st.empty()) return ans;
+        
+        s=st1.size();
+        
+         while(s--){
+            Node * tem=st1.top();
+            st1.pop();
+            ans.push_back(tem->data);
+            if(tem->left!=NULL){
+               
+                st.push(tem->left);
+            }
+            if(tem->right!=NULL){
+                
+                st.push(tem->right);
+            }
+        }
+        
+        if(st.empty() && st1.empty()) return ans;
+        
+    }
+    
+    return ans;
+}
