@@ -1,0 +1,31 @@
+bool helper(Node *root, int &k, int node,int & ans){
+     if(root==NULL) return false;
+    
+    if(root->data==node){
+        k--;
+        return true;
+    }
+    
+    bool le=helper(root->left,k,node,ans);
+    bool R=helper(root->right,k,node,ans);
+    
+    if(le || R) {
+        if(!k) ans=root->data;
+        k--;
+        return true;
+    }
+    
+  
+    return false;
+}
+int kthAncestor(Node *root, int k, int node)
+{
+    // Code here
+    if(node==root->data) return -1;
+    int ans=-1;
+    
+    helper(root,k,node,ans);
+    
+    return  ans;
+   
+}
