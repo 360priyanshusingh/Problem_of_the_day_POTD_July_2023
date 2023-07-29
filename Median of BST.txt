@@ -1,0 +1,24 @@
+void dfs(struct Node *root,vector<int> &v){
+    
+    if(root==NULL){
+        return;
+    }
+  
+    dfs(root->left,v);
+    v.push_back(root->data);
+    dfs(root->right,v);
+}
+float findMedian(struct Node *root)
+{
+      //Code here
+      vector<int> v;
+      dfs(root,v);
+      
+      int size=v.size();
+      
+      if(size%2==0){
+          return (float)((v[size/2]+v[(size/2)-1])/2.0);
+      }
+      
+      return (v[size/2]);
+}
