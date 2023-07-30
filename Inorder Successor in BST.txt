@@ -1,0 +1,25 @@
+ void  dfs(Node * root,Node *x,Node * &ans){
+        if(root==NULL) return ;
+        
+          dfs(root->left,x,ans);
+          
+          if(root->data>x->data && !ans) {
+              ans=root;
+              return ;
+          }
+          
+          dfs(root->right,x,ans);
+        
+    }
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+        //Your code here
+        Node *ans=NULL;
+        dfs(root,x,ans);
+        // if(ans==NULL){
+        //      Node *ans=new Node(-1);
+        //      return ans;
+        // }
+    
+        return ans;
+    }
